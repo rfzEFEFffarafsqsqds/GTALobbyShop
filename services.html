@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catalogue — GTALobbyShop</title>
+<meta name="description" content="GTALobbyShop : boost d'argent, braquages, unlock all, tenues et véhicules moddés pour GTA Online PC (Legacy & Enhanced). Livraison rapide, paiement sécurisé, support FR/EN sur Discord.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="glow-bg"></div>
+<div class="noise"></div>
+<header>
+  <a href="index.html" class="logo"><span class="gl">GL</span><span class="dollar">$</span><span class="shop">LobbyShop</span></a>
+  <nav class="mainnav" id="mainnav">
+    <div class="nav-dropdown" id="navDropdown">
+      <button class="nav-drop-btn" id="navDropBtn">Catalogue <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 9l6 6 6-6"/></svg></button>
+      <div class="dropdown-menu">
+        <a href="svc-gta-cash.html" class="dd-item"><span>💰</span>Boost Argent</a>
+        <a href="svc-braquages.html" class="dd-item"><span>🎯</span>Braquages Moddés</a>
+        <a href="svc-stat-edit.html" class="dd-item"><span>📊</span>Stat Edit</a>
+        <a href="svc-fast-run.html" class="dd-item"><span>⚡</span>Fast Run & Fast Swim</a>
+        <a href="svc-unlock-all.html" class="dd-item"><span>🔓</span>Unlock All</a>
+        <a href="svc-tenues.html" class="dd-item"><span>👕</span>Tenues Moddées</a>
+        <a href="svc-vehicules.html" class="dd-item"><span>🚗</span>Véhicules Moddés</a>
+        <a href="svc-ajouts-batiments.html" class="dd-item"><span>🏗️</span>Ajouts de Bâtiments</a>
+      </div>
+    </div>
+    <a href="lobby.html">Comptes Lobby</a>
+    <a href="payment.html">Paiement</a>
+    <a href="reviews.html">Avis</a>
+    <a href="faq.html">FAQ</a>
+    <a href="https://discord.gg/gtalobbyshop" target="_blank" rel="noopener" class="nav-cta">Discord</a>
+  </nav>
+  <div class="header-actions">
+    <button class="cart-btn" id="cartBtn" aria-label="Ouvrir le panier">🛒<span class="cart-count" id="cartCount">0</span></button>
+    <button class="nav-toggle" id="navToggle">☰</button>
+  </div>
+</header>
+<main>
+
+<div class="page-head">
+  <div class="kicker">Le catalogue</div>
+  <h1 class="page-title">Nos services</h1>
+  <p class="page-desc" style="margin-left:auto;margin-right:auto;">Chaque catégorie a sa propre page avec tous les tarifs. Clique pour voir le détail.</p>
+</div>
+<div class="cat-grid" id="catalogueGrid"></div>
+
+</main>
+<footer>
+  <span class="foot-note">© 2023–2026 GTALOBBYSHOP · TOUS DROITS RÉSERVÉS · NON AFFILIÉ À ROCKSTAR GAMES</span>
+  <div class="foot-links">
+    <a href="index.html">Accueil</a>
+    <a href="services.html">Catalogue</a>
+    <a href="lobby.html">Comptes Lobby</a>
+    <a href="payment.html">Paiement</a>
+    <a href="reviews.html">Avis</a>
+    <a href="faq.html">FAQ</a>
+    <a href="contact.html">Contact</a>
+    <a href="https://discord.gg/gtalobbyshop" target="_blank" rel="noopener">Discord</a>
+    <a href="https://www.tiktok.com/@yasko_gta_?_r=1&_t=ZN-98X58gmyrWY" target="_blank" rel="noopener">TikTok @yasko_gta_</a>
+    <a href="https://www.tiktok.com/@gtalobbyshop?_r=1&_t=ZN-98X59KLTBcE" target="_blank" rel="noopener">TikTok @gtalobbyshop</a>
+  </div>
+</footer>
+<div class="overlay" id="overlay"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-head"><h3>Ton panier</h3><button class="drawer-close" id="drawerClose">×</button></div>
+  <div class="drawer-body" id="drawerBody"><div class="cart-empty">Ton panier est vide.<br>Ajoute un service pour commencer.</div></div>
+  <div class="drawer-foot" id="drawerFoot" style="display:none;">
+    <div class="drawer-total"><span>Total</span><b id="drawerTotal">0€</b></div>
+    <button class="btn btn-primary btn-block" id="checkoutBtn">Passer la commande →</button>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modal">
+    <button class="modal-close" id="modalClose">×</button>
+    <div class="modal-steps"><span class="active" data-step="1"></span><span data-step="2"></span><span data-step="3"></span></div>
+
+    <div class="modal-panel" id="step1">
+      <h3>Récapitulatif</h3>
+      <p class="modal-sub">Vérifie ta commande avant de continuer.</p>
+      <div id="summaryLines"></div>
+      <div class="summary-total"><span>Total à payer</span><b id="summaryTotal">0€</b></div>
+      <div class="modal-actions"><button class="btn btn-primary btn-block" id="toStep2">Continuer →</button></div>
+    </div>
+
+    <div class="modal-panel" id="step2" style="display:none;">
+      <h3>Moyen de paiement</h3>
+      <p class="modal-sub">Choisis comment tu veux payer.</p>
+      <label class="pm-option selected" data-pm="paypal">
+        <input type="radio" name="pm" value="paypal" checked>
+        <div class="pm-label"><b>PayPal</b><span>Paiement immédiat via lien sécurisé</span></div>
+      </label>
+      <label class="pm-option" data-pm="other">
+        <input type="radio" name="pm" value="other">
+        <div class="pm-label"><b>Autre méthode</b><span>On s'organise directement sur Discord</span></div>
+      </label>
+      <div id="paypalBox" class="paypal-box">
+        <p>Clique pour payer <b id="paypalAmount">0€</b> via PayPal, puis reviens confirmer ta commande.</p>
+        <a href="#" target="_blank" id="paypalLink" class="btn btn-primary btn-block">Payer avec PayPal →</a>
+      </div>
+      <div class="modal-actions" style="margin-top:18px;">
+        <button class="btn btn-ghost" id="backTo1">← Retour</button>
+        <button class="btn btn-primary" id="toStep3">Continuer →</button>
+      </div>
+    </div>
+
+    <div class="modal-panel" id="step3" style="display:none;">
+      <h3>Dernière étape</h3>
+      <p class="modal-sub">Donne-nous ton pseudo Discord pour le rôle Customer et la livraison.</p>
+      <div class="field"><label for="dcUsername">Pseudo Discord</label><input type="text" id="dcUsername" placeholder="ex : ysk_93_"></div>
+      <div class="field"><label for="dcId">ID Discord (optionnel)</label><input type="text" id="dcId" placeholder="ex : 123456789012345678"></div>
+      <label class="field-check"><input type="checkbox" id="dcConfirm">J'ai bien effectué le paiement pour cette commande.</label>
+      <div class="modal-actions">
+        <button class="btn btn-ghost" id="backTo2">← Retour</button>
+        <button class="btn btn-primary" id="confirmOrder">Confirmer ma commande</button>
+      </div>
+    </div>
+
+    <div class="modal-panel" id="step4" style="display:none;">
+      <div class="success-box">
+        <div class="sb-icon">✅</div><h3>Commande envoyée !</h3>
+        <p>Rejoins le Discord si ce n'est pas fait — le staff vérifie ton paiement et t'attribue le rôle <b style="color:var(--text)">Customer</b>.</p>
+      </div>
+      <div class="modal-actions"><button class="btn btn-primary btn-block" id="closeSuccess">Terminé</button></div>
+    </div>
+  </div>
+</div>
+<script src="assets/app.js"></script>
+<script>
+buildCatalogueGrid('catalogueGrid');
+</script>
+</body>
+</html>
